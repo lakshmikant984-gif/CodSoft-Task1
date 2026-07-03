@@ -1,0 +1,51 @@
+import re
+import sys
+
+def get_response(user_input):
+   
+    user_input = user_input.lower().strip()
+    
+    
+    if re.search(r'\b(hi|hello|hey|hola)\b', user_input):
+        return "Hello! How can I help you today?"
+   
+   
+    elif re.search(r'\b(how are you|how\'s it going)\b', user_input):
+        return "I'm just a bunch of code, but I'm functioning perfectly! How are you?"
+    
+    
+    elif re.search(r'\b(your name|who are you)\b', user_input):
+        return "I am CorporateBot, your friendly neighborhood rule-based assistant."
+    
+    elif re.search(r'\b(help|do for me|functions)\b', user_input):
+        return "I can answer basic greetings, tell you my name, or help you navigate this script!"
+    
+   
+    elif re.search(r'\b(bye|goodbye|exit|quit)\b', user_input):
+        return "Goodbye! Have a great day!"
+
+    else:
+        return "I'm not sure I understand that. Could you try phrasing it differently?"
+
+def start_chatbot():
+    print("CorporateBot: Hello! Type 'bye' or 'exit' to leave the chat.")
+    print("-" * 50)
+    
+    while True:
+        try:
+            user_input = input("You: ")
+            
+           
+            response = get_response(user_input)
+            print(f"CorporateBot: {response}")
+            
+            
+            if re.search(r'\b(bye|goodbye|exit|quit)\b', user_input.lower()):
+                break
+                
+        except (KeyboardInterrupt, EOFError):
+            print("\nCorporateBot: Goodbye!")
+            sys.exit()
+
+if __name__ == "__main__":
+    start_chatbot()
